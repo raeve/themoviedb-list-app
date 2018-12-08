@@ -1,7 +1,7 @@
 package com.rubenexposito.themoviedblistapp.presentation.movielist
 
 import com.rubenexposito.themoviedblistapp.Navigator
-import com.rubenexposito.themoviedblistapp.domain.GetMovieListUseCase
+import com.rubenexposito.themoviedblistapp.domain.interactor.GetMovieListUseCase
 
 class MovieListPresenter(
     private val view: MovieListContract.View,

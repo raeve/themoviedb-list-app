@@ -3,7 +3,8 @@ package com.rubenexposito.themoviedblistapp.presentation.movielist.di
 import android.app.Activity
 import com.rubenexposito.contactsmarvelapp.di.PerActivity
 import com.rubenexposito.themoviedblistapp.Navigator
-import com.rubenexposito.themoviedblistapp.domain.GetMovieListUseCase
+import com.rubenexposito.themoviedblistapp.domain.TheMovieDbRepository
+import com.rubenexposito.themoviedblistapp.domain.interactor.GetMovieListUseCase
 import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListActivity
 import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListContract
 import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListPresenter
@@ -31,9 +32,10 @@ abstract class MovieListModule {
         @PerActivity
         @JvmStatic
         fun provideGetMovieListUseCase(
+            theMovieDbRepository: TheMovieDbRepository,
             @Named("observeOn") observeOn: Scheduler,
             @Named("subscribeOn") subscribeOn: Scheduler
-        ) = GetMovieListUseCase(observeOn, subscribeOn)
+        ) = GetMovieListUseCase(theMovieDbRepository, observeOn, subscribeOn)
 
         @Provides
         @PerActivity

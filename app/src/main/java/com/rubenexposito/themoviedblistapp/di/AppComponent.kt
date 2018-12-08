@@ -9,9 +9,10 @@ import dagger.android.support.AndroidSupportInjectionModule
 
 @Component(
     modules = [
-        (AndroidSupportInjectionModule::class),
-        (AppModule::class),
-        (BuildersModule::class)
+        AndroidSupportInjectionModule::class,
+        AppModule::class,
+        NetworkModule::class,
+        BuildersModule::class
     ]
 )
 interface AppComponent {

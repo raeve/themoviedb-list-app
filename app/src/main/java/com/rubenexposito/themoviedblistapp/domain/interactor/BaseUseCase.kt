@@ -1,4 +1,4 @@
-package com.rubenexposito.themoviedblistapp.domain
+package com.rubenexposito.themoviedblistapp.domain.interactor
 
 import io.reactivex.Scheduler
 import io.reactivex.Single
