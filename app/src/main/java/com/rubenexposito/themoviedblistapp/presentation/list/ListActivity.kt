@@ -1,7 +1,8 @@
-package com.rubenexposito.themoviedblistapp
+package com.rubenexposito.themoviedblistapp.presentation.list
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.rubenexposito.themoviedblistapp.R
 
 class ListActivity : AppCompatActivity() {
 
