@@ -1,9 +1,9 @@
-package com.rubenexposito.themoviedblistapp.presentation.populartvshows
+package com.rubenexposito.themoviedblistapp.presentation.showlist
 
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import com.rubenexposito.themoviedblistapp.presentation.common.BaseView
 
-interface PopularTvShowsContract {
+interface ShowListContract {
     interface View : BaseView {
         fun showTvShows(tvShows: List<TvShow>)
         fun addTvShows(tvShows: List<TvShow>)

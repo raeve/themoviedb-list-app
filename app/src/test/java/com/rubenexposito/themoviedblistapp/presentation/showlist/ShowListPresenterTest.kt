@@ -1,4 +1,4 @@
-package com.rubenexposito.themoviedblistapp.presentation.populartvshows
+package com.rubenexposito.themoviedblistapp.presentation.showlist
 
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doAnswer
@@ -13,10 +13,10 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class PopularTvShowsPresenterTest {
+class ShowListPresenterTest {
 
     @Mock
-    lateinit var view: PopularTvShowsContract.View
+    lateinit var view: ShowListContract.View
 
     @Mock
     lateinit var useCase: GetPopularTvShowsUseCase
@@ -25,7 +25,7 @@ class PopularTvShowsPresenterTest {
     lateinit var navigator: Navigator
 
     private val presenter by lazy {
-        PopularTvShowsPresenter(view, useCase, navigator)
+        ShowListPresenter(view, useCase, navigator)
     }
 
     @Before

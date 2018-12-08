@@ -1,13 +1,13 @@
-package com.rubenexposito.themoviedblistapp.presentation.populartvshows.di
+package com.rubenexposito.themoviedblistapp.presentation.showlist.di
 
 import android.app.Activity
 import com.rubenexposito.themoviedblistapp.di.PerActivity
 import com.rubenexposito.themoviedblistapp.Navigator
 import com.rubenexposito.themoviedblistapp.domain.TheMovieDbRepository
 import com.rubenexposito.themoviedblistapp.domain.interactor.GetPopularTvShowsUseCase
-import com.rubenexposito.themoviedblistapp.presentation.populartvshows.PopularTvShowsActivity
-import com.rubenexposito.themoviedblistapp.presentation.populartvshows.PopularTvShowsContract
-import com.rubenexposito.themoviedblistapp.presentation.populartvshows.PopularTvShowsPresenter
+import com.rubenexposito.themoviedblistapp.presentation.showlist.ShowListActivity
+import com.rubenexposito.themoviedblistapp.presentation.showlist.ShowListContract
+import com.rubenexposito.themoviedblistapp.presentation.showlist.ShowListPresenter
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -15,15 +15,15 @@ import io.reactivex.Scheduler
 import javax.inject.Named
 
 @Module
-abstract class PopularTvShowsModule {
+abstract class ShowListModule {
 
     @Binds
     @PerActivity
-    internal abstract fun provideView(activity: PopularTvShowsActivity): PopularTvShowsContract.View
+    internal abstract fun provideView(activity: ShowListActivity): ShowListContract.View
 
     @Binds
     @PerActivity
-    internal abstract fun provideActivity(activity: PopularTvShowsActivity): Activity
+    internal abstract fun provideActivity(activity: ShowListActivity): Activity
 
     @Module
     companion object {
@@ -41,9 +41,9 @@ abstract class PopularTvShowsModule {
         @PerActivity
         @JvmStatic
         fun providePresenter(
-            view: PopularTvShowsContract.View,
-            useCase: GetPopularTvShowsUseCase,
-            navigator: Navigator
-        ): PopularTvShowsContract.Presenter = PopularTvShowsPresenter(view, useCase, navigator)
+                view: ShowListContract.View,
+                useCase: GetPopularTvShowsUseCase,
+                navigator: Navigator
+        ): ShowListContract.Presenter = ShowListPresenter(view, useCase, navigator)
     }
 }

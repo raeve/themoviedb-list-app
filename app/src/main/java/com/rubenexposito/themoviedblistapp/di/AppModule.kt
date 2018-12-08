@@ -2,7 +2,7 @@ package com.rubenexposito.themoviedblistapp.di
 
 import android.content.Context
 import com.rubenexposito.themoviedblistapp.BaseApplication
-import com.rubenexposito.themoviedblistapp.presentation.populartvshows.di.PopularTvShowsSubComponent
+import com.rubenexposito.themoviedblistapp.presentation.showlist.di.ShowListSubComponent
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module(
-    subcomponents = [PopularTvShowsSubComponent::class]
+    subcomponents = [ShowListSubComponent::class]
 )
 class AppModule {
 

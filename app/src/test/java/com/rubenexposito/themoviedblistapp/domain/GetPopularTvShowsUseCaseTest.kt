@@ -13,7 +13,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class GetPopularTVShowsUseCaseTest {
+class GetPopularTvShowsUseCaseTest {
 
     @Mock
     lateinit var theMovieDbRepository: TheMovieDbRepository
@@ -37,16 +37,18 @@ class GetPopularTVShowsUseCaseTest {
     @Test
     fun `should execute on completed when call is successful`() {
         givenSuccessfulCall()
-        useCase.execute(callback)
+        useCase.execute(callback, givenMapNotNull())
         verify(callback).onCompleted(any())
     }
 
     @Test
     fun `should execute on error when call is unsuccessful`() {
         givenUnsuccessfulCall()
-        useCase.execute(callback)
+        useCase.execute(callback, givenMapNotNull())
         verify(callback).onError(any())
     }
+
+    private fun givenMapNotNull() = mapOf(GetPopularTvShowsUseCase.PARAM_LANGUAGE to "en-US", GetPopularTvShowsUseCase.PARAM_PAGE to 1)
 
     private fun givenSuccessfulCall() {
         whenever(theMovieDbRepository.getPopularTvShows()).thenReturn(Single.just(emptyList()))

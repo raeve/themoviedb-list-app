@@ -15,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -32,6 +33,7 @@ dependencies {
 
     //AndroidX
     implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     //Dagger
     implementation "com.google.dagger:dagger:2.17"
@@ -50,6 +52,12 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Lottie
+    implementation 'com.airbnb.android:lottie:2.8.0'
+
     //Test
     testImplementation 'org.mockito:mockito-core:2.23.0'
     testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
@@ -57,4 +65,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+androidExtensions {
+    experimental = true
 }

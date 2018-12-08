@@ -1,4 +1,4 @@
-package com.rubenexposito.themoviedblistapp.presentation.populartvshows
+package com.rubenexposito.themoviedblistapp.presentation.showlist
 
 import com.rubenexposito.themoviedblistapp.Navigator
 import com.rubenexposito.themoviedblistapp.R
@@ -7,11 +7,11 @@ import com.rubenexposito.themoviedblistapp.domain.interactor.GetPopularTvShowsUs
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import java.util.*
 
-class PopularTvShowsPresenter(
-    private val view: PopularTvShowsContract.View,
-    private val useCase: GetPopularTvShowsUseCase,
-    private val navigator: Navigator
-) : PopularTvShowsContract.Presenter {
+class ShowListPresenter(
+        private val view: ShowListContract.View,
+        private val useCase: GetPopularTvShowsUseCase,
+        private val navigator: Navigator
+) : ShowListContract.Presenter {
 
     private var page = 1
 

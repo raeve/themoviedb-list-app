@@ -1,8 +1,8 @@
 package com.rubenexposito.themoviedblistapp.di
 
 import android.app.Activity
-import com.rubenexposito.themoviedblistapp.presentation.populartvshows.PopularTvShowsActivity
-import com.rubenexposito.themoviedblistapp.presentation.populartvshows.di.PopularTvShowsSubComponent
+import com.rubenexposito.themoviedblistapp.presentation.showlist.ShowListActivity
+import com.rubenexposito.themoviedblistapp.presentation.showlist.di.ShowListSubComponent
 import dagger.Binds
 import dagger.Module
 import dagger.android.ActivityKey
@@ -14,6 +14,6 @@ abstract class BuildersModule {
 
     @Binds
     @IntoMap
-    @ActivityKey(PopularTvShowsActivity::class)
-    abstract fun bindContactsActivityInjectorFactory(builder: PopularTvShowsSubComponent.Builder): AndroidInjector.Factory<out Activity>
+    @ActivityKey(ShowListActivity::class)
+    abstract fun bindContactsActivityInjectorFactory(builder: ShowListSubComponent.Builder): AndroidInjector.Factory<out Activity>
 }
