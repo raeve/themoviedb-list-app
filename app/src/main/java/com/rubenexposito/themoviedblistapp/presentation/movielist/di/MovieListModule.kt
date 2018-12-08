@@ -3,12 +3,15 @@ package com.rubenexposito.themoviedblistapp.presentation.movielist.di
 import android.app.Activity
 import com.rubenexposito.contactsmarvelapp.di.PerActivity
 import com.rubenexposito.themoviedblistapp.Navigator
+import com.rubenexposito.themoviedblistapp.domain.GetMovieListUseCase
 import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListActivity
 import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListContract
 import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListPresenter
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import io.reactivex.Scheduler
+import javax.inject.Named
 
 @Module
 abstract class MovieListModule {
@@ -27,7 +30,18 @@ abstract class MovieListModule {
         @Provides
         @PerActivity
         @JvmStatic
-        fun providePresenter(view: MovieListContract.View, navigator: Navigator): MovieListContract.Presenter =
-            MovieListPresenter(view, navigator)
+        fun provideGetMovieListUseCase(
+            @Named("observeOn") observeOn: Scheduler,
+            @Named("subscribeOn") subscribeOn: Scheduler
+        ) = GetMovieListUseCase(observeOn, subscribeOn)
+
+        @Provides
+        @PerActivity
+        @JvmStatic
+        fun providePresenter(
+            view: MovieListContract.View,
+            useCase: GetMovieListUseCase,
+            navigator: Navigator
+        ): MovieListContract.Presenter = MovieListPresenter(view, useCase, navigator)
     }
 }
