@@ -15,7 +15,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".presentation.movielist.MovieListActivity"
+        <activity android:name=".presentation.populartvshows.PopularTvShowsActivity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

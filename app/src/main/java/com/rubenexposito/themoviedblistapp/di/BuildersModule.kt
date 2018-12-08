@@ -1,8 +1,8 @@
-package com.rubenexposito.contactsmarvelapp.di
+package com.rubenexposito.themoviedblistapp.di
 
 import android.app.Activity
-import com.rubenexposito.themoviedblistapp.presentation.movielist.MovieListActivity
-import com.rubenexposito.themoviedblistapp.presentation.movielist.di.MovieListSubComponent
+import com.rubenexposito.themoviedblistapp.presentation.populartvshows.PopularTvShowsActivity
+import com.rubenexposito.themoviedblistapp.presentation.populartvshows.di.PopularTvShowsSubComponent
 import dagger.Binds
 import dagger.Module
 import dagger.android.ActivityKey
@@ -14,6 +14,6 @@ abstract class BuildersModule {
 
     @Binds
     @IntoMap
-    @ActivityKey(MovieListActivity::class)
-    abstract fun bindContactsActivityInjectorFactory(builder: MovieListSubComponent.Builder): AndroidInjector.Factory<out Activity>
+    @ActivityKey(PopularTvShowsActivity::class)
+    abstract fun bindContactsActivityInjectorFactory(builder: PopularTvShowsSubComponent.Builder): AndroidInjector.Factory<out Activity>
 }

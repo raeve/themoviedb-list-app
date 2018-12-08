@@ -4,8 +4,8 @@ import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rubenexposito.themoviedblistapp.domain.interactor.BaseUseCase
-import com.rubenexposito.themoviedblistapp.domain.interactor.GetMovieListUseCase
-import com.rubenexposito.themoviedblistapp.domain.model.Movie
+import com.rubenexposito.themoviedblistapp.domain.interactor.GetPopularTvShowsUseCase
+import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before
@@ -13,16 +13,16 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class GetMovieListUseCaseTest {
+class GetPopularTVShowsUseCaseTest {
 
     @Mock
     lateinit var theMovieDbRepository: TheMovieDbRepository
 
     @Mock
-    lateinit var callback: BaseUseCase.Callback<List<Movie>>
+    lateinit var callback: BaseUseCase.Callback<List<TvShow>>
 
     private val useCase by lazy {
-        GetMovieListUseCase(
+        GetPopularTvShowsUseCase(
             theMovieDbRepository,
             Schedulers.trampoline(),
             Schedulers.trampoline()
@@ -49,10 +49,10 @@ class GetMovieListUseCaseTest {
     }
 
     private fun givenSuccessfulCall() {
-        whenever(theMovieDbRepository.getMovies()).thenReturn(Single.just(emptyList()))
+        whenever(theMovieDbRepository.getPopularTvShows()).thenReturn(Single.just(emptyList()))
     }
 
     private fun givenUnsuccessfulCall() {
-        whenever(theMovieDbRepository.getMovies()).thenReturn(Single.error(Throwable()))
+        whenever(theMovieDbRepository.getPopularTvShows()).thenReturn(Single.error(Throwable()))
     }
 }

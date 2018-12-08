@@ -1,4 +1,4 @@
-package com.rubenexposito.contactsmarvelapp.di
+package com.rubenexposito.themoviedblistapp.di
 
 import javax.inject.Scope
 

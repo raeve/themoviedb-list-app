@@ -1,7 +1,5 @@
 package com.rubenexposito.themoviedblistapp.di
 
-import com.rubenexposito.contactsmarvelapp.di.AppModule
-import com.rubenexposito.contactsmarvelapp.di.BuildersModule
 import com.rubenexposito.themoviedblistapp.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
