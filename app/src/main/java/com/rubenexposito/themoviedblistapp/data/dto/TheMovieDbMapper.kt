@@ -7,6 +7,7 @@ class TheMovieDbMapper {
 
     fun map(results: List<TvShowDto>): List<TvShow> = results.map {
         TvShow(
+                it.id,
             it.name,
             it.overview,
             imageBackdrop(it.backdrop_path),
