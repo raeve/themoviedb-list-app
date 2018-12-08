@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.rubenexposito.themoviedblistapp.R
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity(), ListContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
