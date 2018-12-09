@@ -24,9 +24,9 @@
         <LinearLayout
             android:id="@+id/llSimilar"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tvSimilarTitle"
@@ -45,13 +45,14 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lavSimilar"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="120dp"
+            android:visibility="gone"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/empty_box" />
 
     </FrameLayout>
 
+    <include layout="@layout/layout_powered" />
 
 </LinearLayout>
