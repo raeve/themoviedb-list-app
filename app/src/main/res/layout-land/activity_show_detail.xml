@@ -8,7 +8,7 @@
     tools:context=".presentation.showdetail.ShowDetailActivity">
 
     <FrameLayout
-        android:layout_width="@dimen/_160sdp"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="match_parent">
 
         <com.rubenexposito.themoviedblistapp.presentation.common.PortraitLandscapeRatioImageView
@@ -17,6 +17,8 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/background_portrait_test" />
+
+        <include layout="@layout/view_toolbar" />
 
         <include layout="@layout/layout_show_title" />
 

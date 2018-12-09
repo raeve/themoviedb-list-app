@@ -7,9 +7,10 @@ import com.rubenexposito.themoviedblistapp.presentation.common.ShowListener
 
 interface ShowDetailContract {
 
-    interface View : BaseView {
+    interface View {
         fun displayShow(tvShow: TvShow)
         fun displaySimilarShows(shows: List<TvShow>)
+        fun displayEmptySimilarShows()
     }
 
     interface Presenter : BasePresenter, ShowListener {

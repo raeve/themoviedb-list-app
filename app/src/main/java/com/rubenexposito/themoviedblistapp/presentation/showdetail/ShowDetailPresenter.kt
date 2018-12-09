@@ -25,16 +25,17 @@ class ShowDetailPresenter(private val view: ShowDetailContract.View, private val
     }
 
     private fun requestRecommended(id: Int) {
-        view.showLoading()
         useCase.execute(object : BaseUseCase.Callback<List<TvShow>> {
             override fun onCompleted(result: List<TvShow>) {
-                view.displaySimilarShows(result)
-                view.hideLoading()
+                if(result.isNotEmpty()) {
+                    view.displaySimilarShows(result)
+                } else {
+                    view.displayEmptySimilarShows()
+                }
             }
 
             override fun onError(error: Throwable) {
-                view.showError(R.string.error_could_not_retrieve_data)
-                view.hideLoading()
+                view.displayEmptySimilarShows()
             }
 
         }, mapOf(GetSimilarTvShowsUseCase.PARAM_ID to id,

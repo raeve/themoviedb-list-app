@@ -24,6 +24,7 @@
         <LinearLayout
             android:id="@+id/llSimilar"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -44,10 +45,11 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lavSimilar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:visibility="gone"
+            android:layout_height="120dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/vr_sickness" />
+            app:lottie_rawRes="@raw/empty_box" />
 
     </FrameLayout>
 

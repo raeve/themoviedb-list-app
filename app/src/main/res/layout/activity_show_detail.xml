@@ -19,10 +19,12 @@
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/background_landscape_test" />
 
-            <include layout="@layout/layout_show_title" />
+            <include layout="@layout/view_toolbar" />
 
+            <include layout="@layout/layout_show_title" />
 
         </FrameLayout>
 

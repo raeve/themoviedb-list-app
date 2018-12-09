@@ -15,6 +15,7 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_show_detail.*
 import kotlinx.android.synthetic.main.layout_show_overview.*
 import kotlinx.android.synthetic.main.layout_show_title.*
+import kotlinx.android.synthetic.main.view_toolbar.*
 import javax.inject.Inject
 
 class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
@@ -29,6 +30,12 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
 
         initExtra()
         initView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ivToolbar.setImageDrawable(getDrawable(R.drawable.ic_back))
+        tvToolbar.text = ""
     }
 
     override fun onPause() {
@@ -47,24 +54,17 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
 
     override fun displaySimilarShows(shows: List<TvShow>) {
         llSimilar.show()
-        with(rvSimilarShows.adapter as ShowListAdapter){
+        lavSimilar.hide()
+        with(rvSimilarShows.adapter as ShowListAdapter) {
             showlist.clear()
             showlist.addAll(shows)
             notifyDataSetChanged()
         }
     }
 
-    override fun showLoading() {
-        lavSimilar.show()
+    override fun displayEmptySimilarShows() {
         llSimilar.hide()
-    }
-
-    override fun hideLoading() {
-        lavSimilar.hide()
-    }
-
-    override fun showError(stringRes: Int) {
-        Toast.makeText(this, stringRes, Toast.LENGTH_SHORT).show()
+        lavSimilar.show()
     }
 
     private fun initExtra() {
@@ -74,10 +74,12 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
     }
 
     private fun initView() {
-        with(rvSimilarShows){
+        with(rvSimilarShows) {
             layoutManager = LinearLayoutManager(this@ShowDetailActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = ShowListAdapter(presenter, R.layout.item_similar_show)
         }
+
+        ivToolbar.setOnClickListener { finish() }
     }
 
     companion object {

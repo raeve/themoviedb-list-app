@@ -14,6 +14,7 @@ import com.rubenexposito.themoviedblistapp.presentation.common.ShowListAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_show_list.*
 import kotlinx.android.synthetic.main.view_progress.*
+import kotlinx.android.synthetic.main.view_toolbar.*
 import javax.inject.Inject
 
 class ShowListActivity : AppCompatActivity(), ShowListContract.View {
@@ -27,6 +28,17 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
 
         initView()
         presenter.onCreate()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ivToolbar.setImageDrawable(getDrawable(R.drawable.ic_tmdb_stacked))
+        tvToolbar.text = getString(R.string.title_popular_tv_shows)
+    }
+
+    override fun onPause() {
+        presenter.onPause()
+        super.onPause()
     }
 
     override fun showTvShows(tvShows: List<TvShow>) {
@@ -53,11 +65,13 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
 
     override fun showLoading() {
         rvShowList.hide()
+        viewToolbar.hide()
         srlShowList.isRefreshing = false
         progressView.show()
     }
 
     override fun hideLoading() {
+        viewToolbar.show()
         srlShowList.isRefreshing = false
         progressView.hide()
     }
@@ -74,6 +88,12 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
             adapter = ShowListAdapter(presenter)
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (gridLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
+                        viewToolbar.show()
+                    } else {
+                        viewToolbar.hide()
+                    }
+
                     if (gridLayoutManager.findLastVisibleItemPosition() >= gridLayoutManager.itemCount - (spanCount * 3)) {
                         presenter.requestData(false)
                     }
