@@ -13,6 +13,7 @@ import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import com.rubenexposito.themoviedblistapp.presentation.common.ShowListAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_show_list.*
+import kotlinx.android.synthetic.main.layout_empty.*
 import kotlinx.android.synthetic.main.view_progress.*
 import kotlinx.android.synthetic.main.view_toolbar.*
 import javax.inject.Inject
@@ -60,12 +61,16 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
     }
 
     override fun showError(stringRes: Int) {
+        if(rvShowList.adapter?.itemCount == 0) {
+            viewEmpty.show()
+        }
         Toast.makeText(this, stringRes, Toast.LENGTH_SHORT).show()
     }
 
     override fun showLoading() {
         rvShowList.hide()
         viewToolbar.hide()
+        viewEmpty.hide()
         srlShowList.isRefreshing = false
         progressView.show()
     }

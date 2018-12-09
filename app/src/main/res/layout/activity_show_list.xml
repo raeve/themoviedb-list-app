@@ -20,6 +20,8 @@
 
     <include layout="@layout/view_toolbar" />
 
+    <include layout="@layout/layout_empty" />
+
     <include layout="@layout/view_progress" />
 
 </FrameLayout>
