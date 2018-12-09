@@ -10,14 +10,16 @@ class TheMovieDbMapper {
                 it.id,
                 it.name,
                 it.overview,
-                imageBackdrop(it.backdrop_path),
-                imagePoster(it.poster_path),
+                if (!it.backdrop_path.isNullOrBlank()) imageBackdrop(it.backdrop_path) else imagePoster(it.poster_path),
+                if (!it.poster_path.isNullOrBlank()) imagePoster(it.poster_path) else imageBackdrop(it.backdrop_path),
                 it.vote_average
         )
     }
 
 
-    private fun imagePoster(path: String) = BaseConfig.API_IMAGE_BASE_URL + BaseConfig.API_IMAGE_POSTER_SIZE + path
+    private fun imagePoster(path: String?) = path?.let { BaseConfig.API_IMAGE_BASE_URL + BaseConfig.API_IMAGE_POSTER_SIZE + path }
+            ?: ""
 
-    private fun imageBackdrop(path: String) = BaseConfig.API_IMAGE_BASE_URL + BaseConfig.API_IMAGE_BACKDROP_SIZE + path
+    private fun imageBackdrop(path: String?) = path?.let { BaseConfig.API_IMAGE_BASE_URL + BaseConfig.API_IMAGE_BACKDROP_SIZE + path }
+            ?: ""
 }
