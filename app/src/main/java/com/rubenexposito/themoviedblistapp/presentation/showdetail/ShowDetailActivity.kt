@@ -6,12 +6,17 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rubenexposito.themoviedblistapp.R
+import com.rubenexposito.themoviedblistapp.common.hide
 import com.rubenexposito.themoviedblistapp.common.landscape
 import com.rubenexposito.themoviedblistapp.common.load
+import com.rubenexposito.themoviedblistapp.common.show
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
+import com.rubenexposito.themoviedblistapp.presentation.common.ShowListAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_show_detail.*
+import kotlinx.android.synthetic.main.layout_show_detail.*
 import javax.inject.Inject
 
 class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
@@ -25,6 +30,7 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
         AndroidInjection.inject(this)
 
         initExtra()
+        initView()
     }
 
     override fun onPause() {
@@ -33,18 +39,27 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
     }
 
     override fun displayShow(tvShow: TvShow) {
-        val imageUrl = if (landscape()) tvShow.imagePoster else tvShow.imageBackdrop
-        findViewById<ImageView>(R.id.ivImage).load(imageUrl)
+        (ivImage as ImageView).load(if (landscape()) tvShow.imagePoster else tvShow.imageBackdrop)
         tvTitle.text = tvShow.title
         tvOverview.text = tvShow.overview
     }
 
+    override fun displaySimilarShows(shows: List<TvShow>) {
+        with(rvSimilarShows.adapter as ShowListAdapter){
+            showlist.clear()
+            showlist.addAll(shows)
+            notifyDataSetChanged()
+        }
+    }
+
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progressView.show()
+        rvSimilarShows.hide()
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progressView.hide()
+        rvSimilarShows.show()
     }
 
     override fun showError(stringRes: Int) {
@@ -54,6 +69,13 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
     private fun initExtra() {
         intent?.let {
             presenter.bindIntent(intent.getParcelableExtra(KEY_TV_SHOW))
+        }
+    }
+
+    private fun initView() {
+        with(rvSimilarShows){
+            layoutManager = LinearLayoutManager(this@ShowDetailActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = ShowListAdapter(presenter, R.layout.item_similar_show)
         }
     }
 

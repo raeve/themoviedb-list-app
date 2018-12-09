@@ -9,6 +9,7 @@ interface ShowDetailContract {
 
     interface View : BaseView {
         fun displayShow(tvShow: TvShow)
+        fun displaySimilarShows(shows: List<TvShow>)
     }
 
     interface Presenter : BasePresenter, ShowListener {

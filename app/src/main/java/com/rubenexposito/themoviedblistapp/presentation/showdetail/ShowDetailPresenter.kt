@@ -28,7 +28,7 @@ class ShowDetailPresenter(private val view: ShowDetailContract.View, private val
         view.showLoading()
         useCase.execute(object : BaseUseCase.Callback<List<TvShow>> {
             override fun onCompleted(result: List<TvShow>) {
-                //TODO: Show recommended on view. Apply pagination
+                view.displaySimilarShows(result)
                 view.hideLoading()
             }
 

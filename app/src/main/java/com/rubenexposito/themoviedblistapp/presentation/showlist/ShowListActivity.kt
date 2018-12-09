@@ -33,7 +33,7 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
         rvShowList.show()
         with(rvShowList.adapter as ShowListAdapter) {
             showlist.clear()
-            addShows(tvShows)
+            showlist.addAll(tvShows)
             notifyDataSetChanged()
         }
     }
@@ -41,7 +41,7 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
     override fun addTvShows(tvShows: List<TvShow>) {
         with(rvShowList.adapter as ShowListAdapter) {
             val size = itemCount
-            addShows(tvShows)
+            showlist.addAll(tvShows)
             notifyItemRangeInserted(size, tvShows.size)
         }
 

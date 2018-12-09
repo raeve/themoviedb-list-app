@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@color/black"
     tools:context=".presentation.showdetail.ShowDetailActivity">
 
     <com.rubenexposito.themoviedblistapp.presentation.common.PortraitLandscapeRatioImageView
@@ -15,36 +16,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black">
+        android:layout_height="match_parent">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_8sdp">
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_18sdp"
-                tools:text="@tools:sample/lorem" />
-
-            <TextView
-                android:id="@+id/tvOverview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/_14sdp"
-                tools:text="@tools:sample/lorem" />
-
-        </LinearLayout>
+        <include layout="@layout/layout_show_detail" />
 
     </androidx.core.widget.NestedScrollView>
 

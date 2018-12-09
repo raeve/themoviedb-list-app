@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TheMovieDBListApp</string>
     <string name="error_could_not_retrieve_data">Could not retrieve data</string>
+    <string name="similar_shows_title">Recommendations</string>
 </resources>
