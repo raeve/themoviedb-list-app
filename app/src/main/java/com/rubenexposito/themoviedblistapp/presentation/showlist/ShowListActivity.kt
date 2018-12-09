@@ -1,6 +1,5 @@
 package com.rubenexposito.themoviedblistapp.presentation.showlist
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rubenexposito.themoviedblistapp.R
 import com.rubenexposito.themoviedblistapp.common.hide
+import com.rubenexposito.themoviedblistapp.common.landscape
 import com.rubenexposito.themoviedblistapp.common.show
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import com.rubenexposito.themoviedblistapp.presentation.common.ShowListAdapter
@@ -31,7 +31,7 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
 
     override fun showTvShows(tvShows: List<TvShow>) {
         rvShowList.show()
-        with(rvShowList.adapter as ShowListAdapter){
+        with(rvShowList.adapter as ShowListAdapter) {
             showlist.clear()
             addShows(tvShows)
             notifyDataSetChanged()
@@ -39,7 +39,7 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
     }
 
     override fun addTvShows(tvShows: List<TvShow>) {
-        with(rvShowList.adapter as ShowListAdapter){
+        with(rvShowList.adapter as ShowListAdapter) {
             val size = itemCount
             addShows(tvShows)
             notifyItemRangeInserted(size, tvShows.size)
@@ -63,18 +63,18 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
     }
 
     private fun initView() {
-        with(srlShowList){
+        with(srlShowList) {
             setOnRefreshListener { presenter.requestData(true) }
         }
 
-        with(rvShowList){
-            val spanCount = if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 3 else 2
+        with(rvShowList) {
+            val spanCount = if (this@ShowListActivity.landscape()) 3 else 2
             val gridLayoutManager = GridLayoutManager(this@ShowListActivity, spanCount)
             layoutManager = gridLayoutManager
             adapter = ShowListAdapter(presenter)
-            addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    if(gridLayoutManager.findLastVisibleItemPosition() >= gridLayoutManager.itemCount - (spanCount*3)) {
+                    if (gridLayoutManager.findLastVisibleItemPosition() >= gridLayoutManager.itemCount - (spanCount * 3)) {
                         presenter.requestData(false)
                     }
                     super.onScrollStateChanged(recyclerView, newState)

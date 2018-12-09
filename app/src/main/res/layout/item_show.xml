@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.rubenexposito.themoviedblistapp.presentation.common.RatioImageView
+    <com.rubenexposito.themoviedblistapp.presentation.common.PortraitRatioImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
         tools:ignore="ContentDescription"
-        tools:src="@drawable/background_flash_test" />
+        tools:src="@drawable/background_portrait_test" />
 
     <TextView
         android:id="@+id/tvTitle"

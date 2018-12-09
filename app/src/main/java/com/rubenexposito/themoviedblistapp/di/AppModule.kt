@@ -2,6 +2,7 @@ package com.rubenexposito.themoviedblistapp.di
 
 import android.content.Context
 import com.rubenexposito.themoviedblistapp.BaseApplication
+import com.rubenexposito.themoviedblistapp.presentation.showdetail.di.ShowDetailSubComponent
 import com.rubenexposito.themoviedblistapp.presentation.showlist.di.ShowListSubComponent
 import dagger.Module
 import dagger.Provides
@@ -11,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module(
-    subcomponents = [ShowListSubComponent::class]
+    subcomponents = [ShowListSubComponent::class, ShowDetailSubComponent::class]
 )
 class AppModule {
 

@@ -1,6 +1,8 @@
 package com.rubenexposito.themoviedblistapp.di
 
 import android.app.Activity
+import com.rubenexposito.themoviedblistapp.presentation.showdetail.ShowDetailActivity
+import com.rubenexposito.themoviedblistapp.presentation.showdetail.di.ShowDetailSubComponent
 import com.rubenexposito.themoviedblistapp.presentation.showlist.ShowListActivity
 import com.rubenexposito.themoviedblistapp.presentation.showlist.di.ShowListSubComponent
 import dagger.Binds
@@ -15,5 +17,10 @@ abstract class BuildersModule {
     @Binds
     @IntoMap
     @ActivityKey(ShowListActivity::class)
-    abstract fun bindContactsActivityInjectorFactory(builder: ShowListSubComponent.Builder): AndroidInjector.Factory<out Activity>
+    abstract fun bindShowListActivityInjectorFactory(builder: ShowListSubComponent.Builder): AndroidInjector.Factory<out Activity>
+
+    @Binds
+    @IntoMap
+    @ActivityKey(ShowDetailActivity::class)
+    abstract fun bindShowDetailActivityInjectorFactory(builder: ShowDetailSubComponent.Builder): AndroidInjector.Factory<out Activity>
 }

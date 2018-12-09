@@ -24,7 +24,7 @@ class ShowListAdapter(private val callback: ShowListener? = null) : RecyclerView
     override fun onBindViewHolder(holder: ShowViewHolder, position: Int) = with(holder) {
         val show = showlist[position]
         bind(show)
-        itemView.setOnClickListener { callback?.onShowSelected(show) }
+        itemView.ivImage.setOnClickListener { callback?.onShowSelected(show) }
     }
 
     fun addShows(shows: List<TvShow>) {
