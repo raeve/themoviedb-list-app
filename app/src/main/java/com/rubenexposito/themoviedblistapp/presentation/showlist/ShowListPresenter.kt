@@ -14,6 +14,7 @@ class ShowListPresenter(
 ) : ShowListContract.Presenter {
 
     private var page = 1
+    private var isRequestingData = false
 
     override fun onCreate() {
         requestData(true)
@@ -24,32 +25,42 @@ class ShowListPresenter(
     }
 
     override fun requestData(reset: Boolean) {
-        if (reset) page = 1
+        if (isRequestingData) return
+        if (reset) {
+            page = 1
+            view.showLoading()
+        }
 
-        view.showLoading()
+        isRequestingData = true
         useCase.execute(
-            object : BaseUseCase.Callback<List<TvShow>> {
-                override fun onCompleted(result: List<TvShow>) {
-                    if (reset) {
-                        view.showTvShows(result)
-                    } else {
-                        view.addTvShows(result)
+                object : BaseUseCase.Callback<List<TvShow>> {
+                    override fun onCompleted(result: List<TvShow>) {
+                        isRequestingData = false
+
+                        if (reset) {
+                            view.showTvShows(result)
+                        } else {
+                            view.addTvShows(result)
+                        }
+
+                        page++
+                        view.hideLoading()
                     }
 
-                    page++
-                    view.hideLoading()
-                }
-
-                override fun onError(error: Throwable) {
-                    view.showError(R.string.error_could_not_retrieve_data)
-                    view.hideLoading()
-                }
-            },
-            mapOf(
-                GetPopularTvShowsUseCase.PARAM_LANGUAGE to Locale.getDefault().language,
-                GetPopularTvShowsUseCase.PARAM_PAGE to page
-            )
+                    override fun onError(error: Throwable) {
+                        isRequestingData = false
+                        view.showError(R.string.error_could_not_retrieve_data)
+                        view.hideLoading()
+                    }
+                },
+                mapOf(
+                        GetPopularTvShowsUseCase.PARAM_LANGUAGE to Locale.getDefault().language + "-" + Locale.getDefault().country,
+                        GetPopularTvShowsUseCase.PARAM_PAGE to page
+                )
         )
     }
 
+    override fun onShowSelected(show: TvShow) {
+        navigator.showDetail(show)
+    }
 }

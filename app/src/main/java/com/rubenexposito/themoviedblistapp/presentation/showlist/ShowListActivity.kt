@@ -3,11 +3,15 @@ package com.rubenexposito.themoviedblistapp.presentation.showlist
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rubenexposito.themoviedblistapp.R
 import com.rubenexposito.themoviedblistapp.common.hide
 import com.rubenexposito.themoviedblistapp.common.show
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
+import com.rubenexposito.themoviedblistapp.presentation.common.ShowListAdapter
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_show_list.*
 import kotlinx.android.synthetic.main.view_progress.*
 import javax.inject.Inject
 
@@ -20,17 +24,25 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
         setContentView(R.layout.activity_show_list)
         AndroidInjection.inject(this)
 
+        initView()
         presenter.onCreate()
-
     }
 
     override fun showTvShows(tvShows: List<TvShow>) {
-        Toast.makeText(this, "show data", Toast.LENGTH_SHORT).show()
-
+        rvShowList.show()
+        with(rvShowList.adapter as ShowListAdapter){
+            showlist.clear()
+            addShows(tvShows)
+            notifyDataSetChanged()
+        }
     }
 
     override fun addTvShows(tvShows: List<TvShow>) {
-        Toast.makeText(this, "add data", Toast.LENGTH_SHORT).show()
+        with(rvShowList.adapter as ShowListAdapter){
+            val size = itemCount
+            addShows(tvShows)
+            notifyItemRangeInserted(size, tvShows.size)
+        }
 
     }
 
@@ -39,10 +51,34 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
     }
 
     override fun showLoading() {
+        rvShowList.hide()
+        srlShowList.isRefreshing = false
         progressView.show()
     }
 
     override fun hideLoading() {
+        srlShowList.isRefreshing = false
         progressView.hide()
+    }
+
+    private fun initView() {
+        with(srlShowList){
+            setOnRefreshListener { presenter.requestData(true) }
+        }
+
+        with(rvShowList){
+            val gridLayoutManager = GridLayoutManager(this@ShowListActivity, 2)
+            layoutManager = gridLayoutManager
+            adapter = ShowListAdapter(presenter)
+            addOnScrollListener(object: RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if(gridLayoutManager.findLastCompletelyVisibleItemPosition() >= gridLayoutManager.itemCount - 8) {
+                        presenter.requestData(false)
+                    }
+                    super.onScrollStateChanged(recyclerView, newState)
+                }
+            })
+            setHasFixedSize(true)
+        }
     }
 }

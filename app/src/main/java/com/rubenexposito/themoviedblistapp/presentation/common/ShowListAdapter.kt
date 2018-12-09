@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rubenexposito.themoviedblistapp.R
 import com.rubenexposito.themoviedblistapp.common.inflate
+import com.rubenexposito.themoviedblistapp.common.load
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
+import kotlinx.android.synthetic.main.item_show.view.*
 
 class ShowListAdapter(private val callback: ShowListener? = null) : RecyclerView.Adapter<ShowViewHolder>() {
     var showlist: MutableList<TvShow> = ArrayList()
@@ -36,6 +38,8 @@ interface ShowListener {
 
 class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(show: TvShow) = with(itemView) {
-
+        ivImage.load(show.imagePoster)
+        tvTitle.text = show.title
+        tvRating.text = show.rating.toString()
     }
 }

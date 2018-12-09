@@ -8,11 +8,11 @@ class TheMovieDbMapper {
     fun map(results: List<TvShowDto>): List<TvShow> = results.map {
         TvShow(
                 it.id,
-            it.name,
-            it.overview,
-            imageBackdrop(it.backdrop_path),
-            imagePoster(it.poster_path),
-            it.vote_average
+                it.name,
+                it.overview,
+                imageBackdrop(it.backdrop_path),
+                imagePoster(it.poster_path),
+                it.vote_average
         )
     }
 

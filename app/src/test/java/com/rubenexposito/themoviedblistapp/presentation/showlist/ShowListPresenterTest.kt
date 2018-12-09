@@ -61,6 +61,12 @@ class ShowListPresenterTest {
 
     }
 
+    @Test
+    fun `should navigate to detail on show select`() {
+        presenter.onShowSelected(givenShowNotNull())
+        verify(navigator).showDetail(any())
+    }
+
     private fun givenOnCompletedRequest() {
         doAnswer {
             (it.arguments[0] as BaseUseCase.Callback<List<TvShow>>).onCompleted(emptyList())
@@ -72,4 +78,6 @@ class ShowListPresenterTest {
             (it.arguments[0] as BaseUseCase.Callback<List<TvShow>>).onError(Throwable())
         }.whenever(useCase).execute(any(), any())
     }
+
+    private fun givenShowNotNull() = TvShow(0,"","","","",0.0)
 }
