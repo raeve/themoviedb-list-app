@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_160sdp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
+    <com.rubenexposito.themoviedblistapp.presentation.common.RatioImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_240sdp"
+        android:layout_height="wrap_content"
         tools:ignore="ContentDescription"
         tools:src="@drawable/background_flash_test" />
 

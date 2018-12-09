@@ -1,5 +1,6 @@
 package com.rubenexposito.themoviedblistapp.presentation.showlist
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -67,12 +68,13 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
         }
 
         with(rvShowList){
-            val gridLayoutManager = GridLayoutManager(this@ShowListActivity, 2)
+            val spanCount = if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 3 else 2
+            val gridLayoutManager = GridLayoutManager(this@ShowListActivity, spanCount)
             layoutManager = gridLayoutManager
             adapter = ShowListAdapter(presenter)
             addOnScrollListener(object: RecyclerView.OnScrollListener(){
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    if(gridLayoutManager.findLastCompletelyVisibleItemPosition() >= gridLayoutManager.itemCount - 8) {
+                    if(gridLayoutManager.findLastVisibleItemPosition() >= gridLayoutManager.itemCount - (spanCount*3)) {
                         presenter.requestData(false)
                     }
                     super.onScrollStateChanged(recyclerView, newState)
