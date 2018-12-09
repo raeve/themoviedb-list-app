@@ -1,10 +1,9 @@
-package com.rubenexposito.themoviedblistapp.domain
+package com.rubenexposito.themoviedblistapp.domain.interactor
 
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.rubenexposito.themoviedblistapp.domain.interactor.BaseUseCase
-import com.rubenexposito.themoviedblistapp.domain.interactor.GetPopularTvShowsUseCase
+import com.rubenexposito.themoviedblistapp.domain.TheMovieDbRepository
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -23,9 +22,9 @@ class GetPopularTvShowsUseCaseTest {
 
     private val useCase by lazy {
         GetPopularTvShowsUseCase(
-            theMovieDbRepository,
-            Schedulers.trampoline(),
-            Schedulers.trampoline()
+                theMovieDbRepository,
+                Schedulers.trampoline(),
+                Schedulers.trampoline()
         )
     }
 

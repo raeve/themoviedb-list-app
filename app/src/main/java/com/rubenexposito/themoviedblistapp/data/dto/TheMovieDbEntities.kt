@@ -1,7 +1,7 @@
 package com.rubenexposito.themoviedblistapp.data.dto
 
 
-data class GetPopularTvShowsResponse(
+data class GetTvShowsResponse(
     val page: Int,
     val total_results: Int,
     val total_pages: Int,
