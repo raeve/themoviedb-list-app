@@ -8,15 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rubenexposito.themoviedblistapp.R
-import com.rubenexposito.themoviedblistapp.common.hide
-import com.rubenexposito.themoviedblistapp.common.landscape
-import com.rubenexposito.themoviedblistapp.common.load
-import com.rubenexposito.themoviedblistapp.common.show
+import com.rubenexposito.themoviedblistapp.common.*
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
 import com.rubenexposito.themoviedblistapp.presentation.common.ShowListAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_show_detail.*
-import kotlinx.android.synthetic.main.layout_show_detail.*
+import kotlinx.android.synthetic.main.layout_show_overview.*
+import kotlinx.android.synthetic.main.layout_show_title.*
 import javax.inject.Inject
 
 class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
@@ -41,10 +39,14 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
     override fun displayShow(tvShow: TvShow) {
         (ivImage as ImageView).load(if (landscape()) tvShow.imagePoster else tvShow.imageBackdrop)
         tvTitle.text = tvShow.title
+        tvDate.text = tvShow.year.toString()
+        tvRating.text = tvShow.rating.toPercentage()
+        tvPopularity.text = tvShow.popularity.toKilos()
         tvOverview.text = tvShow.overview
     }
 
     override fun displaySimilarShows(shows: List<TvShow>) {
+        llSimilar.show()
         with(rvSimilarShows.adapter as ShowListAdapter){
             showlist.clear()
             showlist.addAll(shows)
@@ -53,13 +55,12 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
     }
 
     override fun showLoading() {
-        progressView.show()
-        rvSimilarShows.hide()
+        lavSimilar.show()
+        llSimilar.hide()
     }
 
     override fun hideLoading() {
-        progressView.hide()
-        rvSimilarShows.show()
+        lavSimilar.hide()
     }
 
     override fun showError(stringRes: Int) {

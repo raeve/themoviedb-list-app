@@ -8,4 +8,56 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Text themes-->
+    <style name="Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Bold" parent="Text">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Bold.Drawable">
+        <item name="android:drawablePadding">@dimen/spacing_regular</item>
+    </style>
+
+    <style name="Subtitle" parent="Text">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:shadowDx">4</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowColor">@color/transparent_black</item>
+        <item name="android:textSize">@dimen/font_subtitle</item>
+    </style>
+
+    <style name="Title" parent="Subtitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/font_title</item>
+    </style>
+
+    <style name="Container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/spacing_large</item>
+    </style>
+
+    <style name="Container.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Container.Blur" parent="Container.Horizontal">
+        <item name="android:background">@color/transparent_black</item>
+    </style>
+
+
+
+
+
 </resources>

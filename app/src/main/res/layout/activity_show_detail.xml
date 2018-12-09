@@ -11,14 +11,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.rubenexposito.themoviedblistapp.presentation.common.LandscapeRatioImageView
-            android:id="@+id/ivImage"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background_landscape_test" />
+            android:layout_height="wrap_content">
 
-        <include layout="@layout/layout_show_detail" />
+            <com.rubenexposito.themoviedblistapp.presentation.common.LandscapeRatioImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/background_landscape_test" />
+
+            <include layout="@layout/layout_show_title" />
+
+
+        </FrameLayout>
+
+
+        <include layout="@layout/layout_show_overview" />
 
     </LinearLayout>
 

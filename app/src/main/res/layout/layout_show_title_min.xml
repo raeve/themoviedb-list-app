@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_large"
+    android:background="@color/transparent_black"
+    tools:showIn="@layout/item_show">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Bold.Drawable"
+        android:layout_alignParentStart="true"
+        android:gravity="start"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_toStartOf="@id/tvRating"
+        tools:text="The Flash" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        style="@style/Bold.Drawable"
+        android:layout_alignParentEnd="true"
+        android:drawableStart="@drawable/ic_rating"
+        tools:text="78%" />
+</RelativeLayout>

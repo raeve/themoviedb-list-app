@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_title">24sp</dimen>
+    <dimen name="font_subtitle">18sp</dimen>
+    <dimen name="font_description">14sp</dimen>
+
+    <dimen name="spacing_big">12dp</dimen>
+    <dimen name="spacing_large">8dp</dimen>
+    <dimen name="spacing_regular">4dp</dimen>
+    <dimen name="thumbnail_width">120dp</dimen>
+</resources>

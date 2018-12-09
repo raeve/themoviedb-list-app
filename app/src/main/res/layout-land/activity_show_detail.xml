@@ -3,22 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@color/black"
+    android:orientation="horizontal"
     tools:context=".presentation.showdetail.ShowDetailActivity">
 
-    <com.rubenexposito.themoviedblistapp.presentation.common.PortraitLandscapeRatioImageView
-        android:id="@+id/ivImage"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background_portrait_test" />
+    <FrameLayout
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="match_parent">
+
+        <com.rubenexposito.themoviedblistapp.presentation.common.PortraitLandscapeRatioImageView
+            android:id="@+id/ivImage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_portrait_test" />
+
+        <include layout="@layout/layout_show_title" />
+
+    </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/layout_show_detail" />
+        <include layout="@layout/layout_show_overview" />
 
     </androidx.core.widget.NestedScrollView>
 

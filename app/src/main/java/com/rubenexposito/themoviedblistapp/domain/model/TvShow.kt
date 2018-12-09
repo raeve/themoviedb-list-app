@@ -4,5 +4,11 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class TvShow(val id: Int, val title: String, val overview: String, val imageBackdrop: String, val imagePoster: String, val rating: Double) :
-    Parcelable
+data class TvShow(val id: Int,
+                  val title: String,
+                  val overview: String = "",
+                  val imageBackdrop: String?,
+                  val imagePoster: String?,
+                  val rating: Double = 0.0,
+                  val popularity: Double = 0.0,
+                  val year: Int = 2018) : Parcelable
