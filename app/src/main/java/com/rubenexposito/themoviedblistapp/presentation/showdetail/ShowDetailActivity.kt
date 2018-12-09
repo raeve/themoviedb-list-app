@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.rubenexposito.themoviedblistapp.R
 import com.rubenexposito.themoviedblistapp.common.landscape
@@ -26,11 +27,28 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
         initExtra()
     }
 
+    override fun onPause() {
+        presenter.onPause()
+        super.onPause()
+    }
+
     override fun displayShow(tvShow: TvShow) {
         val imageUrl = if (landscape()) tvShow.imagePoster else tvShow.imageBackdrop
         findViewById<ImageView>(R.id.ivImage).load(imageUrl)
         tvTitle.text = tvShow.title
         tvOverview.text = tvShow.overview
+    }
+
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hideLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showError(stringRes: Int) {
+        Toast.makeText(this, stringRes, Toast.LENGTH_SHORT).show()
     }
 
     private fun initExtra() {

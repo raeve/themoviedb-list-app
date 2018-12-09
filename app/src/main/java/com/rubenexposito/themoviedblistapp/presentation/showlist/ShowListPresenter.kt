@@ -2,6 +2,7 @@ package com.rubenexposito.themoviedblistapp.presentation.showlist
 
 import com.rubenexposito.themoviedblistapp.Navigator
 import com.rubenexposito.themoviedblistapp.R
+import com.rubenexposito.themoviedblistapp.common.serverLanguage
 import com.rubenexposito.themoviedblistapp.domain.interactor.BaseUseCase
 import com.rubenexposito.themoviedblistapp.domain.interactor.GetPopularTvShowsUseCase
 import com.rubenexposito.themoviedblistapp.domain.model.TvShow
@@ -54,7 +55,7 @@ class ShowListPresenter(
                     }
                 },
                 mapOf(
-                        GetPopularTvShowsUseCase.PARAM_LANGUAGE to Locale.getDefault().language + "-" + Locale.getDefault().country,
+                        GetPopularTvShowsUseCase.PARAM_LANGUAGE to Locale.getDefault().serverLanguage(),
                         GetPopularTvShowsUseCase.PARAM_PAGE to page
                 )
         )
