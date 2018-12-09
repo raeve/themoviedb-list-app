@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        tools:ignore="ContentDescription"
-        tools:src="@drawable/background_portrait_test" />
+        tools:ignore="ContentDescription" />
 
     <include layout="@layout/layout_show_title_min"/>
 

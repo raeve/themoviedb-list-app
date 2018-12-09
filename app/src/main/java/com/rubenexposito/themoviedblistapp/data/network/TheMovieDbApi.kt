@@ -11,15 +11,15 @@ interface TheMovieDbApi {
     @GET("tv/popular")
     fun getPopularTvShows(
         @Query("api_key") api: String,
-        @Query("language") language: String = "en-US",
-        @Query("page") page: Int = 1
+        @Query("language") language: String,
+        @Query("page") page: Int
     ): Single<GetTvShowsResponse>
 
     @GET("tv/{tv_id}/similar")
     fun getSimilarTvShows(
             @Path("tv_id") id: Int,
             @Query("api_key") api: String,
-            @Query("language") language: String = "en-US",
-            @Query("page") page: Int = 1
+            @Query("language") language: String,
+            @Query("page") page: Int
     ): Single<GetTvShowsResponse>
 }

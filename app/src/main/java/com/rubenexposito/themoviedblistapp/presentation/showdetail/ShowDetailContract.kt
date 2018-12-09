@@ -14,6 +14,6 @@ interface ShowDetailContract {
     }
 
     interface Presenter : BasePresenter, ShowListener {
-        fun bindIntent(tvShow: TvShow)
+        fun bindIntent(id: Int)
     }
 }

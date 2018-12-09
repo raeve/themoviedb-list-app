@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rubenexposito.themoviedblistapp.R
@@ -27,7 +26,7 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_detail)
         AndroidInjection.inject(this)
-
+        supportPostponeEnterTransition()
         initExtra()
         initView()
     }
@@ -44,12 +43,15 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
     }
 
     override fun displayShow(tvShow: TvShow) {
-        (ivImage as ImageView).load(if (landscape()) tvShow.imagePoster else tvShow.imageBackdrop)
-        tvTitle.text = tvShow.title
-        tvDate.text = tvShow.year.toString()
-        tvRating.text = tvShow.rating.toPercentage()
-        tvPopularity.text = tvShow.popularity.toKilos()
-        tvOverview.text = tvShow.overview
+        with(tvShow) {
+            (ivImage as ImageView).transitionName = id.toString()
+            (ivImage as ImageView).loadWithCallback(if (landscape()) imagePoster else imageBackdrop) { supportStartPostponedEnterTransition() }
+            tvTitle.text = title
+            tvDate.text = year.toString()
+            tvRating.text = rating.toPercentage()
+            tvPopularity.text = popularity.toKilos()
+            tvOverview.text = overview
+        }
     }
 
     override fun displaySimilarShows(shows: List<TvShow>) {
@@ -69,7 +71,9 @@ class ShowDetailActivity : AppCompatActivity(), ShowDetailContract.View {
 
     private fun initExtra() {
         intent?.let {
-            presenter.bindIntent(intent.getParcelableExtra(KEY_TV_SHOW))
+            val tvShow = intent.getParcelableExtra<TvShow>(KEY_TV_SHOW)
+            displayShow(tvShow)
+            presenter.bindIntent(tvShow.id)
         }
     }
 

@@ -1,5 +1,7 @@
 package com.rubenexposito.themoviedblistapp.presentation.showlist
 
+import android.widget.ImageView
+import android.widget.TextView
 import com.rubenexposito.themoviedblistapp.Navigator
 import com.rubenexposito.themoviedblistapp.R
 import com.rubenexposito.themoviedblistapp.common.serverLanguage
@@ -61,7 +63,7 @@ class ShowListPresenter(
         )
     }
 
-    override fun onShowSelected(show: TvShow) {
-        navigator.showDetail(show)
+    override fun onShowSelected(show: TvShow, imageView: ImageView) {
+        navigator.showDetail(show, imageView)
     }
 }

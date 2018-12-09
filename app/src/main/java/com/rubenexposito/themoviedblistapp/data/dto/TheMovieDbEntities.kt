@@ -20,6 +20,6 @@ data class TvShowDto(
     val original_language: String,
     val id: Int,
     val vote_average: Double,
-    val overview: String,
+    val overview: String?,
     val poster_path: String?
 )

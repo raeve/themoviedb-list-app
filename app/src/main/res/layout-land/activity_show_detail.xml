@@ -15,8 +15,7 @@
             android:id="@+id/ivImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background_portrait_test" />
+            android:scaleType="centerCrop" />
 
         <include layout="@layout/view_toolbar" />
 
