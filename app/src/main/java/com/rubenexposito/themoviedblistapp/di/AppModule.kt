@@ -2,6 +2,7 @@ package com.rubenexposito.themoviedblistapp.di
 
 import android.content.Context
 import com.rubenexposito.themoviedblistapp.BaseApplication
+import com.rubenexposito.themoviedblistapp.common.Mockable
 import com.rubenexposito.themoviedblistapp.presentation.showdetail.di.ShowDetailSubComponent
 import com.rubenexposito.themoviedblistapp.presentation.showlist.di.ShowListSubComponent
 import dagger.Module
@@ -11,6 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
+@Mockable
 @Module(
     subcomponents = [ShowListSubComponent::class, ShowDetailSubComponent::class]
 )

@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "kotlin-allopen"
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -14,7 +16,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -67,10 +69,20 @@ dependencies {
     testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
     testImplementation 'org.mockito:mockito-inline:2.8.47'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //Android Test
+    androidTestImplementation "org.mockito:mockito-android:2.23.0"
+    androidTestImplementation "com.nhaarman:mockito-kotlin:1.6.0"
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.4'
 }
 
 androidExtensions {
     experimental = true
+}
+
+allOpen {
+    annotation('com.rubenexposito.themoviedblistapp.common.Mockable')
 }

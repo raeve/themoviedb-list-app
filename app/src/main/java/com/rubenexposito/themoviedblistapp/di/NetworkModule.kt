@@ -1,5 +1,6 @@
 package com.rubenexposito.themoviedblistapp.di
 
+import com.rubenexposito.themoviedblistapp.common.Mockable
 import com.rubenexposito.themoviedblistapp.data.TheMovieDbRepositoryImpl
 import com.rubenexposito.themoviedblistapp.data.dto.TheMovieDbMapper
 import com.rubenexposito.themoviedblistapp.data.network.RetrofitAdapter
@@ -8,6 +9,7 @@ import com.rubenexposito.themoviedblistapp.domain.TheMovieDbRepository
 import dagger.Module
 import dagger.Provides
 
+@Mockable
 @Module
 class NetworkModule {
     @Provides

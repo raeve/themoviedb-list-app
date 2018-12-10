@@ -30,4 +30,8 @@ class BaseApplication : Application(), HasActivityInjector {
 
         component.inject(this)
     }
+
+    fun updateComponent(component: AppComponent) {
+        this.component = component
+    }
 }
