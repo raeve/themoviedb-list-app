@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_show_detail">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Title"
+        android:padding="@dimen/spacing_large"
+        tools:text="The Flash" />
+
+    <LinearLayout style="@style/Container.Blur">
+
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/Bold.Drawable"
+            android:drawableStart="@drawable/ic_date"
+            tools:text="2009" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            style="@style/Bold.Drawable"
+            android:layout_marginStart="@dimen/spacing_big"
+            android:drawableStart="@drawable/ic_rating"
+            tools:text="7.8" />
+
+        <TextView
+            android:id="@+id/tvPopularity"
+            style="@style/Bold.Drawable"
+            android:layout_marginStart="@dimen/spacing_big"
+            android:drawableStart="@drawable/ic_popularity"
+            tools:text="44k" />
+
+
+    </LinearLayout>
+</LinearLayout>

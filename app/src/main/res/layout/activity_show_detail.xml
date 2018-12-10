@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".presentation.showdetail.ShowDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rubenexposito.themoviedblistapp.presentation.common.LandscapeRatioImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop" />
+
+            <include layout="@layout/view_toolbar" />
+
+            <include layout="@layout/layout_show_title" />
+
+        </FrameLayout>
+
+
+        <include layout="@layout/layout_show_overview" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+

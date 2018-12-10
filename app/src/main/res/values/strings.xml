@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TheMovieDBListApp</string>
+    <string name="error_could_not_retrieve_data">Could not retrieve data</string>
+    <string name="similar_shows_title">Recommendations</string>
+    <string name="title_popular_tv_shows">Popular TV Shows</string>
+    <string name="error_empty_list">We couldn\'t find the tv shows. Swipe from top to try again!</string>
+</resources>
