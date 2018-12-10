@@ -5,7 +5,7 @@ An app to list movies from [MovieDB API](https://developers.themoviedb.org/3/get
 
 To retrieve data from [TMDB API](https://developers.themoviedb.org/3/getting-started), you need to create an account and replace the api key in *BaseConfig.kt* with your credentials
 ```kotlin
-    const val API_KEY = "your_public_key"
+    const val API_KEY = "your_api_key"
 ```
 
 
